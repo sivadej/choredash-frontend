@@ -1,0 +1,20 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+
+body {
+  background-color: #aaaaaa;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  box-shadow: none !important;
+}
+
+label {
+  font-weight: bold;
+}
+
+a {
+  color: #c70000;
+}
