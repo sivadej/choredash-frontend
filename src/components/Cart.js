@@ -1,32 +1,47 @@
 import React, { useContext, useState, useEffect } from 'react';
 import UserContext from './../UserContext';
 import CartItems from './CartItems';
-import ChoredashApi from './../api/ChoredashApi';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
-  const { currentUser } = useContext(UserContext);
-  const [cartItems, setCartItems] = useState(null);
-
-  const { id, firstName } = currentUser;
-
-  useEffect(() => {
-    async function getCartItems() {
-      let items = await ChoredashApi.getCart(id);
-      setCartItems(items);
-    }
-    getCartItems();
-  }, [id]);
+  const { cart, setCart } = useContext(UserContext);
 
   const changeItem = () => {
     return;
   }
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log('click!');
+    setCart([...cart, 'newitem']);
+    //const response = api call for cart update, respond with new cart
+    //setCart(response);
+  }
+
+  const clearCart = (e) => {
+    e.preventDefault();
+    console.log('clear!');
+    setCart([]);
+    //const response = api call for cart update, respond with new cart
+    //setCart(response);
+  }
+
+  const checkout = () => {
+    return (
+      <Link to='/checkout'>
+        Checkout
+      </Link>
+    );
+  }
+
   return (
     <div>
-      <h4>Cart for {firstName}</h4>
-      <div><CartItems items={cartItems} changeItem={changeItem}/></div>
-      <div>{JSON.stringify(cartItems)}</div>
-      <div>count {cartItems ? cartItems.length : 0}</div>
+      <h4>Cart</h4>
+      <div><CartItems items={cart} changeItem={changeItem}/></div>
+      <div>cartItems state: {JSON.stringify(cart)}</div>
+      <div>{cart && cart.length > 0 ? checkout() : null}</div>
+      <button onClick={handleClick}>add to cart</button>
+      <button onClick={clearCart}>empty</button>
     </div>
   );
 };

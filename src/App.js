@@ -13,6 +13,7 @@ export const TOKEN_STORAGE_ID = 'choredash-token';
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [cart, setCart] = useState([]);
 
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
@@ -21,17 +22,28 @@ function App() {
       try {
         let response = await ChoredashApi.getUserByToken(token);
         setCurrentUser(response);
+        if (response.id) getCart(response.id);
       } catch (err) {
         setCurrentUser(null);
       }
       setInfoLoaded(true);
     }
+    async function getCart(id) {
+      try {
+        let items = await ChoredashApi.getCart(id);
+        setCart(items);
+      } catch (err) {
+        setCurrentUser(null);
+      }
+    }
     setInfoLoaded(false);
     getCurrentUser();
+    getCart();
   }, [token]);
 
   const handleLogOut = () => {
     setCurrentUser(null);
+    setCart(null);
     setToken(null);
   };
 
@@ -41,9 +53,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+      <UserContext.Provider value={{ currentUser, setCurrentUser, cart, setCart }}>
         <div className='App'>
           <p>current user: {JSON.stringify(currentUser)}</p>
+          <p>global cart: {JSON.stringify(cart)}</p>
           <Navigation logout={handleLogOut} />
           <Routes setToken={setToken} />
         </div>

@@ -10,6 +10,7 @@ import Cart from './../components/Cart';
 import Orders from './../components/Orders';
 import ChoreDetail from './../components/ChoreDetail';
 import Dashboard from './../components/Dashboard';
+import Checkout from './../components/Checkout';
 
 function Routes({ setToken }) {
   return (
@@ -45,6 +46,10 @@ function Routes({ setToken }) {
 
         <PrivateRoute exact path='/dashboard'>
           <Dashboard />
+        </PrivateRoute>
+
+        <PrivateRoute exact path='/checkout'>
+          <Checkout />
         </PrivateRoute>
 
       </Switch>

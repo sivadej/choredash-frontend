@@ -19,9 +19,7 @@ const Dashboard = () => {
       <p>currentUser: {currentUser.email} - {currentUser.type}</p>
 
       <div>{dashboard(currentUser.type)}</div>
-      
-      
-
+    
     </div>
   )
 }
