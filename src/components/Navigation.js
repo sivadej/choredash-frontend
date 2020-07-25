@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Navigation.scss';
 import UserContext from '../UserContext';
+import NavCartCount from './NavCartCount';
 
 function Navigation({ logout }) {
   const { currentUser } = useContext(UserContext);
+  console.log('rendering navbar')
 
   function loggedInNav() {
     return (
@@ -26,7 +28,7 @@ function Navigation({ logout }) {
         </li>
         <li className='nav-item mr-4'>
           <NavLink className='nav-link' to='/cart'>
-            Cart
+            <NavCartCount/>
           </NavLink>
         </li>
         <li className='nav-item'>
@@ -54,7 +56,7 @@ function Navigation({ logout }) {
 
   return (
     <nav className='Navigation navbar navbar-expand-md'>
-      <Link className='navbar-brand' to='/'>
+      <Link className='navbar-brand' to={currentUser ? '/dashboard' : '/'}>
         ChoreDash
       </Link>
       {currentUser ? loggedInNav() : loggedOutNav()}

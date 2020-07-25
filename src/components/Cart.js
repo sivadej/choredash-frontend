@@ -7,13 +7,15 @@ const Cart = () => {
   const { currentUser } = useContext(UserContext);
   const [cartItems, setCartItems] = useState(null);
 
+  const { id, firstName } = currentUser;
+
   useEffect(() => {
     async function getCartItems() {
-      let items = await ChoredashApi.getCart(currentUser.id);
+      let items = await ChoredashApi.getCart(id);
       setCartItems(items);
     }
     getCartItems();
-  }, [currentUser.id]);
+  }, [id]);
 
   const changeItem = () => {
     return;
@@ -21,9 +23,10 @@ const Cart = () => {
 
   return (
     <div>
-      <h4>Cart for {currentUser.firstName}</h4>
+      <h4>Cart for {firstName}</h4>
       <div><CartItems items={cartItems} changeItem={changeItem}/></div>
       <div>{JSON.stringify(cartItems)}</div>
+      <div>count {cartItems ? cartItems.length : 0}</div>
     </div>
   );
 };
