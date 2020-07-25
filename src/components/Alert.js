@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 function Alert({ type, messages }) {
   return (
-    <div className={`alert alert-${type}`} role="alert">
-      {messages.map(error => (
-        <p className="mb-0 small" key={error}>
+    <div className={`alert alert-${type}`} role='alert'>
+      {messages.map((error) => (
+        <p className='mb-0 small' key={error}>
           {error}
         </p>
       ))}
@@ -13,8 +13,8 @@ function Alert({ type, messages }) {
 }
 
 Alert.defaultProps = {
-  type: "danger",
-  messages: []
+  type: 'danger',
+  messages: [],
 };
 
 export default Alert;
