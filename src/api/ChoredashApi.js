@@ -31,7 +31,7 @@ class ChoredashApi {
   }
 
   static async getUserByToken(token) {
-    let res = await this.request(`auth/verify`, {_token:token}, 'post');
+    let res = await this.request(`auth/verify`, { _token: token }, 'post');
     return res;
   }
 
@@ -41,7 +41,7 @@ class ChoredashApi {
   }
 
   static async getChoreByCode(code) {
-    console.log('getting chore with code',code);
+    console.log('getting chore with code', code);
     let res = await this.request(`chores/${code}`);
     return res;
   }
@@ -51,13 +51,31 @@ class ChoredashApi {
     return res;
   }
 
+  static async addToCart(custId, item) {
+    let res = await this.request(
+      `customers/${custId}/cart`,
+      { item, action: 'ADD' },
+      'patch'
+    );
+    return res;
+  }
+
+  static async removeFromCart(custId, itemCode) {
+    let res = await this.request(
+      `customers/${custId}/cart`,
+      { item:{item_code:itemCode}, action: 'REMOVE' },
+      'patch'
+    );
+    return res;
+  }
+
   static async getOrders(userId) {
-    return {orders_for:userId}
+    return { orders_for: userId };
   }
 
   static async login(data) {
     let res = await this.request(`auth/customer/login`, data, 'post');
-    console.log('received token?',res)
+    console.log('received token?', res);
     return res._token;
   }
 }

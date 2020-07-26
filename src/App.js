@@ -36,9 +36,9 @@ function App() {
         setCurrentUser(null);
       }
     }
-    setInfoLoaded(false);
     getCurrentUser();
     getCart();
+    setInfoLoaded(true);
   }, [token]);
 
   const handleLogOut = () => {
@@ -55,11 +55,12 @@ function App() {
     <BrowserRouter>
       <UserContext.Provider value={{ currentUser, setCurrentUser, cart, setCart }}>
         <div className='App'>
-          <p>current user: {JSON.stringify(currentUser)}</p>
-          <p>global cart: {JSON.stringify(cart)}</p>
           <Navigation logout={handleLogOut} />
           <Routes setToken={setToken} />
         </div>
+        <hr/>
+        <div>current user: {JSON.stringify(currentUser)}</div>
+        <div>global cart: {JSON.stringify(cart)}</div>
       </UserContext.Provider>
     </BrowserRouter>
   );

@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import UserContext from '../UserContext';
+import ChoredashApi from './../api/ChoredashApi';
+import CartItem from './CartItem';
 
-const CartItems = ({ items }) => {
+const CartItems = () => {
+  const { cart, setCart, currentUser } = useContext(UserContext);
+
+  async function removeFromCart(e, itemCode) {
+    e.preventDefault();
+    console.log('removing from cart:', itemCode);
+    let cartResponse = await ChoredashApi.removeFromCart(currentUser.id, itemCode);
+    setCart(cartResponse);
+  }
+
   return (
     <div>
-      {items ? (
-        <ul>
-          {items.map((item, idx) => (
-            <li key={idx}>{item.itemcode} {item.description} {item.price}</li>
+      {cart && cart.length > 0 ? (
+        <ul className='list-group'>
+          {cart.map(item => (
+            <CartItem chore={item} remove={removeFromCart} />
           ))}
         </ul>
       ) : (
