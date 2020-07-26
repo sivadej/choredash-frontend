@@ -26,6 +26,9 @@ const Cart = () => {
     //setCart(response);
   }
 
+  // refresh cart
+  // always load cart data from Api to state to ensure 'single source of truth' on cart data
+
   const checkout = () => {
     return (
       <Link to='/checkout'>

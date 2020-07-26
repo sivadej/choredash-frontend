@@ -11,22 +11,22 @@ function Navigation({ logout }) {
   function loggedInNav() {
     return (
       <ul className='navbar-nav ml-auto'>
-        <li className='nav-item mr-4'>
+        <li className='nav-item mr-2'>
           <NavLink className='nav-link' to='/chores'>
             Chores
           </NavLink>
         </li>
-        <li className='nav-item mr-4'>
+        <li className='nav-item mr-2'>
           <NavLink className='nav-link' to='/orders'>
             My Orders
           </NavLink>
         </li>
-        <li className='nav-item mr-4'>
+        <li className='nav-item mr-2'>
           <NavLink className='nav-link' to='/profile'>
             Profile
           </NavLink>
         </li>
-        <li className='nav-item mr-4'>
+        <li className='nav-item mr-2'>
           <NavLink className='nav-link' to='/cart'>
             <NavCartCount/>
           </NavLink>
@@ -36,6 +36,10 @@ function Navigation({ logout }) {
             Log out
           </Link>
         </li>
+        <li className='nav-item nav-link tiny'>
+          ({currentUser ? currentUser.firstName : null})
+        </li>
+        
       </ul>
     );
   }

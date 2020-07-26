@@ -1,5 +1,9 @@
 import React from 'react'
 
+// Provider dashboard
+// Show most recent orders
+// Pop up order acceptance when needed
+
 const DashboardProvider = () => {
   return (
     <div>
