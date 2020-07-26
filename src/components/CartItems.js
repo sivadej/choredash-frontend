@@ -13,12 +13,13 @@ const CartItems = () => {
     setCart(cartResponse);
   }
 
+
   return (
     <div>
       {cart && cart.length > 0 ? (
         <ul className='list-group'>
           {cart.map(item => (
-            <CartItem chore={item} remove={removeFromCart} />
+            <CartItem key={item.item_code} chore={item} remove={removeFromCart} />
           ))}
         </ul>
       ) : (
