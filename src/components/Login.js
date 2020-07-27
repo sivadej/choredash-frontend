@@ -49,12 +49,14 @@ function Login({ setToken }) {
 
     try {
       res = await ChoredashApi[endpoint](data);
+      if (res.message) return setLoginInfo((l) => ({ ...l, errors:[res.message] }));
+      if (res._token) {
+        setToken(res._token);
+        history.push('/');
+      }
     } catch (errors) {
       return setLoginInfo((l) => ({ ...l, errors }));
     }
-
-    setToken(res._token);
-    history.push('/');
   }
 
   function handleChange(e) {

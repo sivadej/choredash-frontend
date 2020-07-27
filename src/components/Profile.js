@@ -46,7 +46,7 @@ function Profile({ setToken }) {
       // refresh login token
       const refreshLoginData = {email: profileData.email, password: userForm.password}
       const refreshToken = await ChoredashApi.login(refreshLoginData);
-      if (refreshToken.message) console.log(refreshToken.message)
+      if (refreshToken.message) setUserForm((f) => ({ ...f, errors:[refreshToken.message] }));
       if (refreshToken._token) setToken(refreshToken._token)
 
       setUserForm((f) => ({
