@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { decode } from 'jsonwebtoken';
 import { ClipLoader } from 'react-spinners';
 import './App.scss';
 import useLocalStorage from './hooks/useLocalStorage';
@@ -20,9 +21,9 @@ function App() {
   useEffect(() => {
     async function getCurrentUser() {
       try {
-        let response = await ChoredashApi.getUserByToken(token);
-        setCurrentUser(response);
-        if (response.id) getCart(response.id);
+        let decodedToken = decode(token);
+        setCurrentUser(decodedToken);
+        if (decodedToken.id) getCart(decodedToken.id);
       } catch (err) {
         setCurrentUser(null);
       }
@@ -37,8 +38,6 @@ function App() {
       }
     }
     getCurrentUser();
-    getCart();
-    setInfoLoaded(true);
   }, [token]);
 
   const handleLogOut = () => {

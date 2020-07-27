@@ -17,8 +17,12 @@ const Orders = () => {
 
   return (
     <div>
-      <h4>My Orders: {currentUser.firstName}</h4>
-      <div>{JSON.stringify(orders)}</div>
+      <h4>My Orders</h4>
+      <ul>
+        {orders !== null ? orders.map(o=><li key={o._id}>{o.date_created} - {o.status}</li>) : <div>no orders found</div>}
+      </ul>
+      <hr/>
+      <div>API response: {JSON.stringify(orders)}</div>
     </div>
   );
 };

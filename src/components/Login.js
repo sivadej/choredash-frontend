@@ -54,7 +54,7 @@ function Login({ setToken }) {
     }
 
     setToken(token);
-    history.push('/profile');
+    history.push('/');
   }
 
   function handleChange(e) {

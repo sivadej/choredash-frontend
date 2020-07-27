@@ -6,7 +6,6 @@ import NavCartCount from './NavCartCount';
 
 function Navigation({ logout }) {
   const { currentUser } = useContext(UserContext);
-  console.log('rendering navbar')
 
   function loggedInNav() {
     return (
