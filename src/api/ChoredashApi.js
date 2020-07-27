@@ -79,6 +79,12 @@ class ChoredashApi {
     console.log('received token?', res);
     return res._token;
   }
+
+  // return object containing { firstName, lastName, email }
+  static async saveProfile(userId, type, profileData) {
+    let res = await this.request(`${type}s/${userId}`, profileData, 'patch');
+    return res;
+  }
 }
 
 export default ChoredashApi;

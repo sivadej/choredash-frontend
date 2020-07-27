@@ -9,11 +9,9 @@ function Profile() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const [userForm, setUserForm] = useState({
-    first_name: currentUser.first_name || '',
-    last_name: currentUser.last_name || '',
+    firstName: currentUser.firstName || '',
+    lastName: currentUser.lastName || '',
     email: currentUser.email || '',
-    photo_url: currentUser.photo_url || '',
-    username: currentUser.username,
     password: '',
     errors: [],
     saveConfirmed: false,
@@ -38,23 +36,24 @@ function Profile() {
 
     try {
       let profileData = {
-        first_name: userForm.first_name || undefined,
-        last_name: userForm.last_name || undefined,
+        first_name: userForm.firstName || undefined,
+        last_name: userForm.lastName || undefined,
         email: userForm.email || undefined,
-        photo_url: userForm.photo_url || undefined,
-        password: userForm.password,
       };
 
-      let username = userForm.username;
-      let updatedUser = await ChoredashApi.saveProfile(username, profileData);
-      console.log('UPDATED USER', updatedUser);
+      let updatedUser = await ChoredashApi.saveProfile(currentUser.id, currentUser.type, profileData);
       setUserForm((f) => ({
         ...f,
         errors: [],
         saveConfirmed: true,
         password: '',
       }));
-      setCurrentUser(updatedUser);
+      setCurrentUser({
+        ...currentUser,
+        firstName: updatedUser.first_name,
+        lastName: updatedUser.last_name,
+        email: updatedUser.email,
+      });
     } catch (errors) {
       setUserForm((f) => ({ ...f, errors }));
     }
@@ -76,24 +75,20 @@ function Profile() {
         <div className='card-body'>
           <form>
             <div className='form-group'>
-              <label>Username</label>
-              <p className='form-control-plaintext'>{userForm.username}</p>
-            </div>
-            <div className='form-group'>
               <label>First Name</label>
               <input
-                name='first_name'
+                name='firstName'
                 className='form-control'
-                value={userForm.first_name}
+                value={userForm.firstName}
                 onChange={handleChange}
               />
             </div>
             <div className='form-group'>
               <label>Last Name</label>
               <input
-                name='last_name'
+                name='lastName'
                 className='form-control'
-                value={userForm.last_name}
+                value={userForm.lastName}
                 onChange={handleChange}
               />
             </div>
@@ -107,16 +102,7 @@ function Profile() {
               />
             </div>
             <div className='form-group'>
-              <label>Photo URL</label>
-              <input
-                name='photo_url'
-                className='form-control'
-                value={userForm.photo_url}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='form-group'>
-              <label>Confirm password to make changes:</label>
+              <label>Enter password to confirm changes:</label>
               <input
                 type='password'
                 name='password'
@@ -131,7 +117,7 @@ function Profile() {
             ) : null}
 
             {userForm.saveConfirmed ? (
-              <Alert type='success' messages={['User updated successfully.']} />
+              <Alert type='success' messages={['User updated!']} />
             ) : null}
 
             <button

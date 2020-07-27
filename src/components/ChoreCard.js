@@ -10,7 +10,7 @@ const ChoreCard = ({ chore = {} }) => {
 
   // create hash set of cart items for conditional button render
   const itemSet = new Set();
-  cart.forEach(i=>itemSet.add(i.item_code));
+  if (Array.isArray(cart)) cart.forEach(i=>itemSet.add(i.item_code));
 
   async function addToOrder(e) {
     e.preventDefault();
