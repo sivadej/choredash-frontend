@@ -45,15 +45,15 @@ function Login({ setToken }) {
       endpoint = 'login';
     }
 
-    let token;
+    let res;
 
     try {
-      token = await ChoredashApi[endpoint](data);
+      res = await ChoredashApi[endpoint](data);
     } catch (errors) {
       return setLoginInfo((l) => ({ ...l, errors }));
     }
 
-    setToken(token);
+    setToken(res._token);
     history.push('/');
   }
 

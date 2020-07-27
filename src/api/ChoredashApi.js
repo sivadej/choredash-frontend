@@ -76,8 +76,8 @@ class ChoredashApi {
 
   static async login(data) {
     let res = await this.request(`auth/customer/login`, data, 'post');
-    console.log('received token?', res);
-    return res._token;
+    console.log('login res',res)
+    return res;
   }
 
   // return object containing { firstName, lastName, email }

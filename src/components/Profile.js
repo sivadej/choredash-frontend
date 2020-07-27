@@ -5,7 +5,7 @@ import UserContext from './../UserContext';
 
 const MESSAGE_SHOW_PERIOD_IN_MSEC = 3000;
 
-function Profile() {
+function Profile({ setToken }) {
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const [userForm, setUserForm] = useState({
@@ -42,6 +42,13 @@ function Profile() {
       };
 
       let updatedUser = await ChoredashApi.saveProfile(currentUser.id, currentUser.type, profileData);
+
+      // refresh login token
+      const refreshLoginData = {email: profileData.email, password: userForm.password}
+      const refreshToken = await ChoredashApi.login(refreshLoginData);
+      if (refreshToken.message) console.log(refreshToken.message)
+      if (refreshToken._token) setToken(refreshToken._token)
+
       setUserForm((f) => ({
         ...f,
         errors: [],

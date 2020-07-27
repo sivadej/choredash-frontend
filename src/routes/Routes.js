@@ -25,7 +25,7 @@ function Routes({ setToken }) {
         </Route>
 
         <PrivateRoute exact path='/profile'>
-          <Profile />
+          <Profile setToken={setToken} />
         </PrivateRoute>
 
         <PrivateRoute exact path='/orders'>
