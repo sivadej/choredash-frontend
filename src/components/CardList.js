@@ -19,18 +19,3 @@ function CardList({ cards = [], addToOrder = () => null }) {
 }
 
 export default CardList;
-
-// return cards.length ? (
-//   <div className="CardList">
-//     {cards.map((cardData, idx) => (
-//       <Card
-//         item={cardData}
-//         key={idx}
-//         idx={idx}
-//         addToOrder={addToOrder}
-//       />
-//     ))}
-//   </div>
-// ) : (
-//   <p className="lead">Sorry, no results were found!</p>
-// );
