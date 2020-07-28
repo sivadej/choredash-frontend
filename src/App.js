@@ -40,6 +40,11 @@ function App() {
     getCurrentUser();
   }, [token]);
 
+  const calculateCartTotal = () => {
+    let sum = cart.reduce((sum, currItem)=>(sum + currItem.price),0);
+    return sum.toFixed(2);
+  }
+
   const handleLogOut = () => {
     setCurrentUser(null);
     setCart(null);
@@ -55,7 +60,7 @@ function App() {
       <UserContext.Provider value={{ currentUser, setCurrentUser, cart, setCart }}>
         <div className='App'>
           <Navigation logout={handleLogOut} />
-          <Routes setToken={setToken} />
+          <Routes setToken={setToken} calculateCartTotal={calculateCartTotal}/>
         </div>
         <hr/>
         <div>current user: {JSON.stringify(currentUser)}</div>

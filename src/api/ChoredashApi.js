@@ -84,6 +84,16 @@ class ChoredashApi {
     let res = await this.request(`${type}s/${userId}`, profileData, 'patch');
     return res;
   }
+
+  static async getCustomerAddress(id) {
+    let res = await this.request(`customers/${id}`);
+    return res.address;
+  }
+
+  static async checkout(custId) {
+    let res = await this.request(`customers/${custId}/cart/checkout`,{},'post');
+    return res;
+  }
 }
 
 export default ChoredashApi;

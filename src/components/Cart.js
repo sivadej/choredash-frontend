@@ -3,7 +3,7 @@ import UserContext from './../UserContext';
 import CartItems from './CartItems';
 import { Link } from 'react-router-dom';
 
-const Cart = () => {
+const Cart = ({calculateCartTotal}) => {
   const { cart } = useContext(UserContext);
 
   const checkout = () => {
@@ -17,10 +17,7 @@ const Cart = () => {
     );
   }
 
-  const calculateCartTotal = () => {
-    let sum = cart.reduce((sum, currItem)=>(sum + currItem.price),0);
-    return sum.toFixed(2);
-  }
+
 
   return (
     <div>

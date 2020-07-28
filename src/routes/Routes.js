@@ -11,8 +11,10 @@ import Orders from './../components/Orders';
 import ChoreDetail from './../components/ChoreDetail';
 import Dashboard from './../components/Dashboard';
 import Checkout from './../components/Checkout';
+import OrderSuccess from './../components/OrderSuccess';
 
-function Routes({ setToken }) {
+
+function Routes({ setToken, calculateCartTotal }) {
   return (
     <div className='pt-5'>
       <Switch>
@@ -41,7 +43,7 @@ function Routes({ setToken }) {
         </PrivateRoute>
 
         <PrivateRoute exact path='/cart'>
-          <Cart />
+          <Cart calculateCartTotal={calculateCartTotal}/>
         </PrivateRoute>
 
         <PrivateRoute exact path='/dashboard'>
@@ -49,7 +51,11 @@ function Routes({ setToken }) {
         </PrivateRoute>
 
         <PrivateRoute exact path='/checkout'>
-          <Checkout />
+          <Checkout calculateCartTotal={calculateCartTotal}/>
+        </PrivateRoute>
+
+        <PrivateRoute exact path='/order-success'>
+          <OrderSuccess />
         </PrivateRoute>
 
       </Switch>
