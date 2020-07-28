@@ -11,7 +11,7 @@ import Orders from './../components/Orders';
 import ChoreDetail from './../components/ChoreDetail';
 import Dashboard from './../components/Dashboard';
 import Checkout from './../components/Checkout';
-import OrderSuccess from './../components/OrderSuccess';
+import OrderDetails from './../components/OrderDetails';
 
 
 function Routes({ setToken, calculateCartTotal }) {
@@ -54,8 +54,8 @@ function Routes({ setToken, calculateCartTotal }) {
           <Checkout calculateCartTotal={calculateCartTotal}/>
         </PrivateRoute>
 
-        <PrivateRoute exact path='/order-success'>
-          <OrderSuccess />
+        <PrivateRoute path='/order-details/:orderId'>
+          <OrderDetails />
         </PrivateRoute>
 
       </Switch>

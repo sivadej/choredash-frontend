@@ -3,11 +3,9 @@ import UserContext from './../UserContext';
 import ChoredashApi from './../api/ChoredashApi';
 import { useHistory } from 'react-router-dom';
 
-
-
 const Checkout = ({calculateCartTotal}) => {
   const history = useHistory();
-  const { currentUser, cart } = useContext(UserContext);
+  const { currentUser, cart, setCart } = useContext(UserContext);
   const [address, setAddress] = useState(null);
   const [alert, setAlert] = useState(null);
 
@@ -29,9 +27,10 @@ const Checkout = ({calculateCartTotal}) => {
     if (orderResponse.success) {
       console.log('redirecting to success page',orderResponse.orderId)
       setAlert(null);
-      history.push('/');
+      setCart([]);
+      history.push(`/order-details/${orderResponse.orderId}`);
     }
-    else setAlert('something went wrong!')
+    else setAlert('something went wrong! order not submitted.')
   }
 
   return (

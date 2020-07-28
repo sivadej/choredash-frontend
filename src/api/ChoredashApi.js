@@ -74,6 +74,11 @@ class ChoredashApi {
     return res;
   }
 
+  static async getOrderDetail(orderId) {
+    let res = await this.request(`orders/${orderId}`);
+    return res;
+  }
+
   static async login(data) {
     let res = await this.request(`auth/customer/login`, data, 'post');
     return res;
