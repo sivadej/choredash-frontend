@@ -17,11 +17,11 @@ const CartItems = () => {
   return (
     <div>
       {cart && cart.length > 0 ? (
-        <ul className='list-group'>
+        <div>
           {cart.map(item => (
             <CartItem key={item.item_code} chore={item} remove={removeFromCart} />
           ))}
-        </ul>
+        </div>
       ) : (
         <div>No items in cart</div>
       )}

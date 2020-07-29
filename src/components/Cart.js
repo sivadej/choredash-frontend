@@ -8,22 +8,25 @@ const Cart = ({calculateCartTotal}) => {
 
   const checkout = () => {
     return (
-      <div>
-        <p>Total: {calculateCartTotal()}</p>
+      <div className='font-weight-bold'>
+        <h5>Total: {calculateCartTotal()}</h5>
         <Link to='/checkout'>
-          Checkout
+          <h5>Checkout</h5>
         </Link>
       </div>
     );
   }
 
-
-
   return (
-    <div>
+    <div className='col-md-8 col-lg-6 offset-md-2 offset-lg-3'>
       <h4>Cart</h4>
-      <div><CartItems items={cart}/></div>
-      <div>{cart && cart.length > 0 ? checkout() : null}</div>
+      <ul className='list-group'>
+        <CartItems items={cart}/>
+        <li className='list-group-item d-flex'>
+          {cart && cart.length > 0 ? checkout() : null}
+        </li>
+      </ul>
+      
     </div>
   );
 };
