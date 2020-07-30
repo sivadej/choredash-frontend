@@ -12,6 +12,7 @@ import ChoreDetail from './../components/ChoreDetail';
 import Dashboard from './../components/Dashboard';
 import Checkout from './../components/Checkout';
 import OrderDetails from './../components/OrderDetails';
+import DashboardProvider from '../components/DashboardProvider';
 
 
 function Routes({ setToken, calculateCartTotal }) {
@@ -23,7 +24,15 @@ function Routes({ setToken, calculateCartTotal }) {
         </Route>
 
         <Route exact path='/login'>
-          <Login setToken={setToken} />
+          <Login setToken={setToken} userType='customer' />
+        </Route>
+
+        <Route exact path='/provider/login'>
+          <Login setToken={setToken} userType='provider' />
+        </Route>
+
+        <Route exact path='/hidden/admin/login'>
+          <Login setToken={setToken} userType='admin' />
         </Route>
 
         <PrivateRoute exact path='/profile'>
@@ -48,6 +57,10 @@ function Routes({ setToken, calculateCartTotal }) {
 
         <PrivateRoute exact path='/dashboard'>
           <Dashboard />
+        </PrivateRoute>
+
+        <PrivateRoute exact path='/provider/dashboard'>
+          <DashboardProvider />
         </PrivateRoute>
 
         <PrivateRoute exact path='/checkout'>

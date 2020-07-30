@@ -7,7 +7,9 @@ import React from 'react'
 const DashboardProvider = () => {
   return (
     <div>
-      provider dashboard component - welcome provider! you have one active order
+      provider dashboard component - welcome provider!
+      ALERT! Accept this order? - ...details...
+      Buttons: Accept / reject
     </div>
   )
 }

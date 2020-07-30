@@ -92,7 +92,7 @@ class ChoredashApi {
 
   static async getCustomerAddress(id) {
     let res = await this.request(`customers/${id}`);
-    return res.address;
+    return {address: res.address, location: res.current_location};
   }
 
   static async checkout(custId) {

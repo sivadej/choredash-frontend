@@ -4,7 +4,7 @@ import './Login.scss';
 import Alert from './Alert';
 import ChoredashApi from './../api/ChoredashApi';
 
-function Login({ setToken }) {
+function Login({ setToken, userType }) {
   const history = useHistory();
   const [activeView, setActiveView] = useState('login');
   const [loginInfo, setLoginInfo] = useState({
@@ -97,7 +97,7 @@ function Login({ setToken }) {
             <button
               className={`btn btn-primary ${loginActive ? 'active' : ''} `}
               onClick={setLoginView}>
-              Login
+              Login {userType}
             </button>
             <button
               className={`btn btn-primary ${loginActive ? '' : 'active'} `}
