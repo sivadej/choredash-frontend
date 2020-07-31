@@ -30,10 +30,19 @@ class ChoredashApi {
     }
   }
 
+  // Authentication API requests:
+
+  static async login(data) {
+    let res = await this.request(`auth/customer/login`, data, 'post');
+    return res;
+  }
+
   static async getUserByToken(token) {
     let res = await this.request(`auth/verify`, { _token: token }, 'post');
     return res;
   }
+
+  // Chores API requests:
 
   static async getChores(search) {
     let res = await this.request('chores', { search });
@@ -45,6 +54,8 @@ class ChoredashApi {
     let res = await this.request(`chores/${code}`);
     return res;
   }
+
+  // Customer model API requests:
 
   static async getCart(custId) {
     let res = await this.request(`customers/${custId}/cart`);
@@ -63,14 +74,14 @@ class ChoredashApi {
   static async removeFromCart(custId, itemCode) {
     let res = await this.request(
       `customers/${custId}/cart`,
-      { item:{item_code:itemCode}, action: 'REMOVE' },
+      { item: { item_code: itemCode }, action: 'REMOVE' },
       'patch'
     );
     return res;
   }
 
-  static async getOrders(custId) {
-    let res = await this.request(`customers/${custId}/orders`);
+  static async getOrders(custId, userType) {
+    let res = await this.request(`${userType}s/${custId}/orders`);
     return res;
   }
 
@@ -79,24 +90,49 @@ class ChoredashApi {
     return res;
   }
 
-  static async login(data) {
-    let res = await this.request(`auth/customer/login`, data, 'post');
-    return res;
+  static async getCustomerAddress(id) {
+    let res = await this.request(`customers/${id}`);
+    return { address: res.address, location: res.current_location };
   }
 
-  // return object containing { firstName, lastName, email }
   static async saveProfile(userId, type, profileData) {
     let res = await this.request(`${type}s/${userId}`, profileData, 'patch');
     return res;
   }
 
-  static async getCustomerAddress(id) {
-    let res = await this.request(`customers/${id}`);
-    return {address: res.address, location: res.current_location};
+  // provider API requests:
+
+  static async getPendingOrder(providerId) {
+    let res = await this.request(`providers/${providerId}/pending`);
+    return res;
   }
 
+  // active order user flow API requests:
+
   static async checkout(custId) {
-    let res = await this.request(`customers/${custId}/cart/checkout`,{},'post');
+    let res = await this.request(
+      `customers/${custId}/cart/checkout`,
+      {},
+      'post'
+    );
+    return res;
+  }
+
+  static async acceptOrder(orderId, providerId) {
+    // POST: orders/{orderId}/accept/{providerId}
+    let res = await this.request(`orders/${orderId}/accept/${providerId}`,{},'post');
+    return res;
+  }
+
+  static async rejectOrder(orderId, providerId) {
+    // POST: orders/{orderId}/reject/{providerId}
+    let res = await this.request(`orders/${orderId}/reject/${providerId}`,{},'post');
+    return res;
+  }
+
+  static async confirmCompleteProvider(orderId, providerId) {
+    // POST: orders/{orderId}/complete/{userType}
+    let res = await this.request(`orders/${orderId}/complete/provider/${providerId}`,{},'post');
     return res;
   }
 }

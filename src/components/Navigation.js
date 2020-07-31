@@ -7,7 +7,7 @@ import NavCartCount from './NavCartCount';
 function Navigation({ logout }) {
   const { currentUser } = useContext(UserContext);
 
-  function loggedInNav() {
+  function customerNav() {
     return (
       <ul className='navbar-nav ml-auto'>
         <li className='nav-item mr-2'>
@@ -43,6 +43,49 @@ function Navigation({ logout }) {
     );
   }
 
+  function providerNav() {
+    return (
+      <ul className='navbar-nav ml-auto'>
+        <li className='nav-item mr-2'>
+          <NavLink className='nav-link' to='/dashboard'>
+            Provider Dashboard
+          </NavLink>
+        </li>
+        <li className='nav-item mr-2'>
+          <NavLink className='nav-link' to='/orders'>
+            My Orders
+          </NavLink>
+        </li>
+        <li className='nav-item mr-2'>
+          <NavLink className='nav-link' to='/profile'>
+            Profile
+          </NavLink>
+        </li>
+        <li className='nav-item'>
+          <Link className='nav-link' to='/' onClick={logout}>
+            Log out
+          </Link>
+        </li>
+        <li className='nav-item nav-link tiny'>
+          ({currentUser ? currentUser.firstName : null})
+        </li>
+        
+      </ul>
+    );
+  }
+
+  function adminOptions() {
+    return (
+      <ul className='navbar-nav ml-auto'>
+        <li className='nav-item mr-2'>
+          <NavLink className='nav-link' to='/orders'>
+            Admin Dashboard
+          </NavLink>
+        </li>
+      </ul>
+    );
+  }
+
   function loggedOutNav() {
     return (
       <ul className='navbar-nav ml-auto'>
@@ -56,13 +99,15 @@ function Navigation({ logout }) {
   }
 
   // create navs for customer, provider, anon
-
   return (
     <nav className='Navigation navbar navbar-expand-md'>
-      <Link className='navbar-brand' to={currentUser ? '/dashboard' : '/'}>
+      <Link className='navbar-brand' to={'/'}>
         ChoreDash
       </Link>
-      {currentUser ? loggedInNav() : loggedOutNav()}
+      {(currentUser && currentUser.is_admin) ? adminOptions() : null}
+      {(currentUser && currentUser.type === 'customer') ? customerNav() : null}
+      {(currentUser && currentUser.type === 'provider') ? providerNav() : null}
+      {(!currentUser) ? loggedOutNav() : null}
     </nav>
   );
 }

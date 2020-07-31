@@ -14,13 +14,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
-      dashboard component - render component or provider dashboard based on user type
-      <p>currentUser: {currentUser.email} - {currentUser.type}</p>
-
       <div>{dashboard(currentUser.type)}</div>
-    
-    </div>
   )
 }
 
