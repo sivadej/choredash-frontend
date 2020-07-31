@@ -119,19 +119,16 @@ class ChoredashApi {
   }
 
   static async acceptOrder(orderId, providerId) {
-    // POST: orders/{orderId}/accept/{providerId}
     let res = await this.request(`orders/${orderId}/accept/${providerId}`,{},'post');
     return res;
   }
 
   static async rejectOrder(orderId, providerId) {
-    // POST: orders/{orderId}/reject/{providerId}
     let res = await this.request(`orders/${orderId}/reject/${providerId}`,{},'post');
     return res;
   }
 
   static async confirmCompleteProvider(orderId, providerId) {
-    // POST: orders/{orderId}/complete/{userType}
     let res = await this.request(`orders/${orderId}/complete/provider/${providerId}`,{},'post');
     return res;
   }

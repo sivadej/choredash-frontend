@@ -24,9 +24,11 @@ function Chores() {
   }
 
   return (
-    <div className='col-md-10 offset-md-1'>
-      <Search endpoint='chores' searchFor={handleSearch} />
-      <CardList cards={chores} addToOrder={addToOrder}/>
+    <div className='container'>
+      <div className='col-md-10 offset-md-1'>
+        <Search endpoint='chores' searchFor={handleSearch} />
+        <CardList cards={chores} addToOrder={addToOrder}/>
+      </div>
     </div>
   );
 }

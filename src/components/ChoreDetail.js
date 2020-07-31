@@ -17,8 +17,10 @@ const ChoreDetail = () => {
   }, [itemcode]);
 
   return (
-    <div className='col-md-10 offset-md-1'>
-      {chore ? <ChoreCard chore={chore} /> : null}
+    <div className='container'>
+      <div className='col-md-10 offset-md-1'>
+        {chore ? <ChoreCard chore={chore} /> : null}
+      </div>
     </div>
   );
 };

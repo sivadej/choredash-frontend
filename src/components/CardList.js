@@ -14,7 +14,7 @@ function CardList({ cards = [], addToOrder = () => null }) {
       ))}
     </div>
   ) : (
-    <p className='lead'>Sorry, no results were found!</p>
+    <p className='lead'>No results found.</p>
   );
 }
 

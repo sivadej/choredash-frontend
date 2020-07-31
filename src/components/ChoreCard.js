@@ -5,7 +5,7 @@ import ChoredashApi from './../api/ChoredashApi';
 import './Card.scss';
 
 const ChoreCard = ({ chore = {} }) => {
-  const { item_code, description, item } = chore;
+  const { item_code, description, item, est_time, price, category } = chore;
   const { cart, setCart, currentUser } = useContext(UserContext);
 
   // create hash set of cart items for conditional button render
@@ -21,10 +21,10 @@ const ChoreCard = ({ chore = {} }) => {
   const activeButton = () => (
     <div>
       <button
-        className='btn btn-danger font-weight-bold text-uppercase float-right'
+        className='btn btn-sm btn-danger font-weight-bold text-uppercase float-right'
         onClick={addToOrder}
         disabled={false}>
-        Add to Order
+        Add to Order - ${price}
       </button>
     </div>
   );
@@ -32,9 +32,9 @@ const ChoreCard = ({ chore = {} }) => {
   const disabledButton = () => (
     <div>
       <button
-        className='btn btn-secondary font-weight-bold text-uppercase float-right'
+        className='btn btn-sm btn-secondary font-weight-bold text-uppercase float-right'
         disabled={true}>
-        In Your Cart
+        In Your Cart - ${price}
       </button>
     </div>
   );
@@ -42,10 +42,11 @@ const ChoreCard = ({ chore = {} }) => {
   return (
     <Link className='Card card' to={`/chores/${item_code}`}>
       <div className='card-body'>
-        <h6 className='card-title d-flex justify-content-between'>
+        <h5 className='card-title d-flex justify-content-between'>
           <span className='text-capitalize'>{item}</span>
-        </h6>
+        </h5>
         <p>{description}</p>
+        <small>Est. {est_time} Minutes | Category: {category}</small>
         <div>{itemSet.has(item_code) ? disabledButton() : activeButton() }</div>
       </div>
     </Link>
@@ -53,3 +54,5 @@ const ChoreCard = ({ chore = {} }) => {
 };
 
 export default ChoreCard;
+
+//est_time, price, category

@@ -19,10 +19,10 @@ const DashboardProvider = () => {
 
   useEffect(() => {
     getPendingOrder();
-    const timer = setInterval(async () => {
-      await getPendingOrder();
-    }, 1500);
-    return () => clearInterval(timer);
+    // const timer = setInterval(async () => {
+    //   await getPendingOrder();
+    // }, 1500);
+    // return () => clearInterval(timer);
   }, []);
 
   const clickAccept = async (e) => {
@@ -32,7 +32,6 @@ const DashboardProvider = () => {
       pendingOrder.order_id,
       currentUser.id
     );
-    getPendingOrder();
     setMessage(JSON.stringify(res));
   };
 
@@ -43,7 +42,6 @@ const DashboardProvider = () => {
       pendingOrder.order_id,
       currentUser.id
     );
-    getPendingOrder();
     setMessage(JSON.stringify(res));
   };
 
@@ -54,7 +52,6 @@ const DashboardProvider = () => {
       pendingOrder.order_id,
       currentUser.id
     );
-    getPendingOrder();
     setMessage(JSON.stringify(res));
   };
 

@@ -10,13 +10,11 @@ function Home() {
     <div className='Home'>
       <div className='container text-center'>
         <h1 className='mb-4 font-weight-bold'>ChoreDash</h1>
-        <p className='lead'>
-          For the lazy at heart. Mundane tasks done for you.
-        </p>
+        <h4 className='mb-4'>For the lazy at heart. Mundane tasks done for you.</h4>
         {currentUser ? (
-          <h2>Hello, {currentUser.firstName}!</h2>
+          <h4 className='font-weight-bold'>Hello, {currentUser.firstName}!</h4>
         ) : (
-          <Link className='btn btn-primary font-weight-bold' to='/login'>
+          <Link className='btn btn-warning font-weight-bold' to='/login'>
             Log in
           </Link>
         )}

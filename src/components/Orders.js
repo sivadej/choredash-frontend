@@ -19,8 +19,53 @@ const Orders = () => {
   }, [currentUser.id, currentUser.type]);
 
   return (
-    <div>
-      <h4>My Orders</h4>
+    <div className='container'>
+      <div className='row pt-2'>
+        <div className='col-8 p-2 bg-light text-center col-md-7 offset-md-1'>
+          <h5>You have an order in progress</h5>
+          <p>Address: 1201 W 82nd Ave </p>
+          <button className='btn btn-warning'>It's Done!</button>
+        </div>
+        <div className='col-4 p-2 bg-light text-center col-md-3 offset-md-0'>
+          <p>Current order detail</p>
+          <p>Chores:<br/>Chore 1<br/>Chore 2</p>
+        </div>
+      </div>
+      <div className='row pt-2'>
+        <div className='col-12 bg-light col-md-10 offset-md-1'>
+          <br />
+          <h4>Past Orders</h4>
+          <table className='table'>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2020-07-31</td>
+                <td>$19</td>
+                <td><button className='btn btn-sm btn-success'>In Progress</button></td>
+              </tr>
+              <tr>
+                <td>2020-07-30</td>
+                <td>$25</td>
+                <td>Completed</td>
+              </tr>
+              <tr>
+                <td>2020-07-25</td>
+                <td>$37</td>
+                <td>Completed</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+          
       <ul>
         {orders !== null ? (
           orders.map((o) => (
@@ -34,6 +79,7 @@ const Orders = () => {
       </ul>
       <hr />
       <div>API response: {JSON.stringify(orders)}</div>
+      
     </div>
   );
 };

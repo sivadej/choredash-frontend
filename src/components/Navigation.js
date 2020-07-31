@@ -52,11 +52,6 @@ function Navigation({ logout }) {
           </NavLink>
         </li>
         <li className='nav-item mr-2'>
-          <NavLink className='nav-link' to='/orders'>
-            My Orders
-          </NavLink>
-        </li>
-        <li className='nav-item mr-2'>
           <NavLink className='nav-link' to='/profile'>
             Profile
           </NavLink>
@@ -101,7 +96,7 @@ function Navigation({ logout }) {
   // create navs for customer, provider, anon
   return (
     <nav className='Navigation navbar navbar-expand-md'>
-      <Link className='navbar-brand' to={'/'}>
+      <Link className='navbar-brand font-weight-bold' to={'/'}>
         ChoreDash
       </Link>
       {(currentUser && currentUser.is_admin) ? adminOptions() : null}

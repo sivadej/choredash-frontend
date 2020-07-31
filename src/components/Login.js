@@ -95,12 +95,12 @@ function Login({ setToken, userType }) {
         <div className='d-flex justify-content-end'>
           <div className='btn-group'>
             <button
-              className={`btn btn-primary ${loginActive ? 'active' : ''} `}
+              className={`btn btn-warning ${loginActive ? 'active' : ''} `}
               onClick={setLoginView}>
               Login {userType}
             </button>
             <button
-              className={`btn btn-primary ${loginActive ? '' : 'active'} `}
+              className={`btn btn-warning ${loginActive ? '' : 'active'} `}
               onClick={setSignupView}>
               Sign up
             </button>
@@ -136,7 +136,7 @@ function Login({ setToken, userType }) {
 
               <button
                 type='submit'
-                className='btn btn-primary float-right'
+                className='btn btn-warning float-right'
                 onSubmit={handleSubmit}>
                 Submit
               </button>
