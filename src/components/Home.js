@@ -10,13 +10,20 @@ function Home() {
     <div className='Home'>
       <div className='container text-center'>
         <h1 className='mb-4 font-weight-bold'>ChoreDash</h1>
-        <h4 className='mb-4'>For the lazy at heart. Mundane tasks done for you.</h4>
+        <h4 className='mb-4'>
+          For the lazy at heart. Mundane tasks done for you.
+        </h4>
         {currentUser ? (
           <h4 className='font-weight-bold'>Hello, {currentUser.firstName}!</h4>
         ) : (
-          <Link className='btn btn-warning font-weight-bold' to='/login'>
-            Log in
-          </Link>
+          <div>
+            <Link className='btn btn-warning font-weight-bold' to='/login'>
+              Log in
+            </Link>
+            <Link className='btn btn-warning font-weight-bold ml-2' to='/chores'>
+              Find Chores!
+            </Link>
+          </div>
         )}
       </div>
     </div>

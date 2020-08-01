@@ -39,6 +39,16 @@ const ChoreCard = ({ chore = {} }) => {
     </div>
   );
 
+  const noUserButton = () => (
+    <div>
+      <button
+        className='btn btn-sm btn-secondary font-weight-bold text-uppercase float-right'
+        disabled={true}>
+        Login to Order - ${price}
+      </button>
+    </div>
+  );
+
   return (
     <Link className='Card card' to={`/chores/${item_code}`}>
       { img_url ? <img className='card-img-top' src={`${img_url}`} alt={`${item_code}`}/> : null}
@@ -49,7 +59,9 @@ const ChoreCard = ({ chore = {} }) => {
         </h5>
         <p>{description}</p>
         <small>Est. {est_time} Minutes | Category: {category}</small>
-        <div>{itemSet.has(item_code) ? disabledButton() : activeButton() }</div>
+        <div>
+          {currentUser ? (itemSet.has(item_code) ? disabledButton() : activeButton() ) : noUserButton()}
+        </div>
       </div>
     </Link>
   );

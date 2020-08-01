@@ -7,7 +7,7 @@ class ChoredashApi {
   static async request(endpoint, params = {}, verb = 'get') {
     let _token = localStorage.getItem(TOKEN_STORAGE_ID);
 
-    console.log('API Call:', endpoint, params, verb);
+    //console.log('API Call:', endpoint, params, verb);
 
     let q;
 

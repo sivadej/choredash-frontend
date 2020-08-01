@@ -190,7 +190,7 @@ function Login({ setToken, userType }) {
                   <small>
                     <strong>Demo Account</strong>
                     <br />
-                    Email: demo@test.com - Password: demo123
+                    Email: demo@test.com - Password: test123
                   </small>
                 </div>
               ) : (
