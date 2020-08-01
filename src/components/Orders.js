@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import UserContext from './../UserContext';
 import ChoredashApi from './../api/ChoredashApi';
 import { Link } from 'react-router-dom';
+import OrdersList from './OrdersList';
 
 const Orders = () => {
   const { currentUser } = useContext(UserContext);
@@ -41,34 +42,7 @@ const Orders = () => {
     <div className='container'>
       <div className='row pt-2'>
         <div className='col-12 bg-light col-md-10 offset-md-1'>
-          <br />
-          <h4>Order History</h4>
-          <table className='table'>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Chores</th>
-                <th>Amount</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders
-                ? orders.map((o) => (
-                    <tr>
-                      <td><Link to={`/order-details/${o._id}`}>{new Date(o.date_created).toLocaleDateString()}</Link></td>
-                      <td>{o.items.length}</td>
-                      <td>${o.order_total}</td>
-                      <td>
-                        <button className='btn btn-sm btn-secondary'>
-                          {o.status}
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                : null}
-            </tbody>
-          </table>
+          <OrdersList orders={orders}/>
         </div>
       </div>
     </div>

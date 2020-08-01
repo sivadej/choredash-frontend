@@ -1,10 +1,10 @@
 import React from 'react';
 
-const DashboardActiveOrder = ({ complete, orderData }) => {
+const DashboardIncoming = ({ accept, reject, orderData }) => {
   return (
     <div className='row pt-2'>
-      <div className='col-8 p-2 bg-light text-center'>
-        <h5>You have an order in progress!</h5>
+      <div className='col-8 p-2 bg-info text-white text-center'>
+        <h4>New order request incoming!</h4>
         {orderData ? (
           <div>
             <small>
@@ -26,7 +26,7 @@ const DashboardActiveOrder = ({ complete, orderData }) => {
           <div className='spinner-border'></div>
         )}
       </div>
-      <div className='col-4 p-2 bg-light text-center'>
+      <div className='col-4 p-2 bg-info text-white text-center'>
         <p>
           <strong>
             Chores:
@@ -41,12 +41,15 @@ const DashboardActiveOrder = ({ complete, orderData }) => {
               ))
             : null}
         </p>
-        <button className='btn btn-warning' onClick={complete}>
-          I'm Done!
+        <button className='btn btn-success' onClick={accept}>
+          Accept
+        </button>{' '}
+        <button className='btn btn-danger' onClick={reject}>
+          Reject
         </button>
       </div>
     </div>
   );
 };
 
-export default DashboardActiveOrder;
+export default DashboardIncoming;

@@ -39,7 +39,6 @@ class ChoredashApi {
 
   static async register(data) {
     let res = await this.request(`customers`, data, 'post');
-    console.log(res)
     return res;
   }
 
@@ -113,6 +112,11 @@ class ChoredashApi {
     return res;
   }
 
+  static async getProviderData(id) {
+    let res= await this.request(`providers/${id}`);
+    return res;
+  }
+
   // active order user flow API requests:
 
   static async checkout(custId) {
@@ -134,7 +138,7 @@ class ChoredashApi {
     return res;
   }
 
-  static async confirmCompleteOrder(orderId) {
+  static async completeOrder(orderId) {
     let res = await this.request(`orders/${orderId}/complete`,{},'post');
     return res;
   }

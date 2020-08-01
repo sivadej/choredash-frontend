@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import Alert from './Alert';
 import ChoredashApi from './../api/ChoredashApi';
 import UserContext from './../UserContext';
+import { Link } from 'react-router-dom';
 
 const MESSAGE_SHOW_PERIOD_IN_MSEC = 3000;
 
@@ -120,6 +121,8 @@ function Profile({ setToken }) {
                 onChange={handleChange}
               />
             </div>
+
+            <Link to='/profile/address'><small>Changing your address?</small></Link>
 
             {userForm.errors.length ? (
               <Alert type='danger' messages={userForm.errors} />

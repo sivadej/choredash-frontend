@@ -12,7 +12,6 @@ import ChoreDetail from './../components/ChoreDetail';
 import Dashboard from './../components/Dashboard';
 import Checkout from './../components/Checkout';
 import OrderDetails from './../components/OrderDetails';
-import DashboardProvider from '../components/DashboardProvider';
 
 
 function Routes({ setToken, calculateCartTotal }) {
@@ -57,10 +56,6 @@ function Routes({ setToken, calculateCartTotal }) {
 
         <PrivateRoute exact path='/dashboard'>
           <Dashboard />
-        </PrivateRoute>
-
-        <PrivateRoute exact path='/provider/dashboard'>
-          <DashboardProvider />
         </PrivateRoute>
 
         <PrivateRoute exact path='/checkout'>
