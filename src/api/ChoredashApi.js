@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { TOKEN_STORAGE_ID } from '../App.js';
 
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3001/api';
+const BASE_URL = process.env.BASE_URL || 'https://choredash-api-sivadej.herokuapp.com/api';
 
 class ChoredashApi {
   static async request(endpoint, params = {}, verb = 'get') {

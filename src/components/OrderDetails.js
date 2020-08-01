@@ -84,7 +84,6 @@ const OrderDetails = () => {
           </div>
         </div>
       </div>
-      {JSON.stringify(order)}
     </div>
   );
 };

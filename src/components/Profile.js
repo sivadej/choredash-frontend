@@ -50,7 +50,6 @@ function Profile({ setToken }) {
       if (refreshToken.message) setUserForm((f) => ({ ...f, errors:[refreshToken.message] }));
       if (refreshToken._token) setToken(refreshToken._token)
 
-      // TODO: if address change, request new coordinates from googlemaps api
 
       setUserForm((f) => ({
         ...f,
