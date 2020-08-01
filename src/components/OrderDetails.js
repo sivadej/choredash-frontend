@@ -39,6 +39,7 @@ const OrderDetails = () => {
       if provider.status is 'waiting', display order details from id current_order, alert for accept/reject order
       ACCEPT: API POST req api/orders/-orderId-/accept/-providerId-
       REJECT: API POST req api/orders/-orderId-/reject/-providerId-
+      --- order status 'no_provider_found': offer RETRY-expandsearchrange / CANCEL
       <p>
         {order && order.status === 'order_in_progress' ? <div>in progress. was this order completed?<button onClick={handleOrderComplete}>completed</button></div> : null}
       </p>

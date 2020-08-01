@@ -19,10 +19,10 @@ const DashboardProvider = () => {
 
   useEffect(() => {
     getPendingOrder();
-    // const timer = setInterval(async () => {
-    //   await getPendingOrder();
-    // }, 1500);
-    // return () => clearInterval(timer);
+    const timer = setInterval(async () => {
+      await getPendingOrder();
+    }, 3000);
+    return () => clearInterval(timer);
   }, []);
 
   const clickAccept = async (e) => {
@@ -73,6 +73,7 @@ const DashboardProvider = () => {
       <p>{message}</p>
       <p>toggle: AVAILABLE | UNAVAILABLE</p>
       <button onClick={clickComplete}>Completed!</button>
+      if order_in_progress redirect to order_details
     </div>
   );
 };

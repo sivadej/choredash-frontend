@@ -128,8 +128,8 @@ class ChoredashApi {
     return res;
   }
 
-  static async confirmCompleteProvider(orderId, providerId) {
-    let res = await this.request(`orders/${orderId}/complete/provider/${providerId}`,{},'post');
+  static async confirmCompleteOrder(orderId) {
+    let res = await this.request(`orders/${orderId}/complete`,{},'post');
     return res;
   }
 }

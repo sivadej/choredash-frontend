@@ -23,7 +23,7 @@ const CartItems = () => {
           ))}
         </div>
       ) : (
-        <div>No items in cart</div>
+        <div class='alert alert-secondary'>Cart is empty.</div>
       )}
     </div>
   );

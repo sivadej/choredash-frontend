@@ -63,8 +63,8 @@ function App() {
           <Routes setToken={setToken} calculateCartTotal={calculateCartTotal}/>
         </div>
         <hr/>
-        <div>current user: {JSON.stringify(currentUser)}</div>
-        <div>global cart: {JSON.stringify(cart)}</div>
+        <div className='bg-secondary text-break'>current user: {JSON.stringify(currentUser)}</div>
+        <div className='bg-secondary text-break'>global cart: {JSON.stringify(cart)}</div>
       </UserContext.Provider>
     </BrowserRouter>
   );

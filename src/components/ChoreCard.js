@@ -5,7 +5,7 @@ import ChoredashApi from './../api/ChoredashApi';
 import './Card.scss';
 
 const ChoreCard = ({ chore = {} }) => {
-  const { item_code, description, item, est_time, price, category } = chore;
+  const { item_code, description, item, est_time, price, category, img_url } = chore;
   const { cart, setCart, currentUser } = useContext(UserContext);
 
   // create hash set of cart items for conditional button render
@@ -41,7 +41,9 @@ const ChoreCard = ({ chore = {} }) => {
 
   return (
     <Link className='Card card' to={`/chores/${item_code}`}>
+      { img_url ? <img className='card-img-top' src={`${img_url}`} alt={`${item_code}`}/> : null}
       <div className='card-body'>
+        
         <h5 className='card-title d-flex justify-content-between'>
           <span className='text-capitalize'>{item}</span>
         </h5>
