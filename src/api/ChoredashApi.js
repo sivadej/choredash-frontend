@@ -37,6 +37,12 @@ class ChoredashApi {
     return res;
   }
 
+  static async register(data) {
+    let res = await this.request(`customers`, data, 'post');
+    console.log(res)
+    return res;
+  }
+
   static async getUserByToken(token) {
     let res = await this.request(`auth/verify`, { _token: token }, 'post');
     return res;

@@ -12,6 +12,11 @@ function Login({ setToken, userType }) {
     first_name: '',
     last_name: '',
     email: '',
+    address_line1: '',
+    address_line2: '',
+    city: '',
+    state: '',
+    zip: '',
     errors: [],
   });
 
@@ -29,12 +34,16 @@ function Login({ setToken, userType }) {
     let endpoint;
 
     if (activeView === 'signup') {
-      // these fields aren't req'd---pass undefined, not empty string
       data = {
+        email: loginInfo.email,
         password: loginInfo.password,
-        first_name: loginInfo.first_name || undefined,
-        last_name: loginInfo.last_name || undefined,
-        email: loginInfo.email || undefined,
+        first_name: loginInfo.first_name,
+        last_name: loginInfo.last_name,
+        address_line1: loginInfo.address_line1,
+        address_line2: loginInfo.address_line2,
+        city: loginInfo.city,
+        state: loginInfo.state,
+        zip: loginInfo.zip,
       };
       endpoint = 'register';
     } else {
@@ -49,7 +58,8 @@ function Login({ setToken, userType }) {
 
     try {
       res = await ChoredashApi[endpoint](data);
-      if (res.message) return setLoginInfo((l) => ({ ...l, errors:[res.message] }));
+      if (res.message)
+        return setLoginInfo((l) => ({ ...l, errors: [res.message] }));
       if (res._token) {
         setToken(res._token);
         history.push('/');
@@ -69,7 +79,7 @@ function Login({ setToken, userType }) {
   const signupFields = (
     <div>
       <div className='form-group'>
-        <label>First name</label>
+        <label>First Name</label>
         <input
           name='first_name'
           className='form-control'
@@ -78,11 +88,56 @@ function Login({ setToken, userType }) {
         />
       </div>
       <div className='form-group'>
-        <label>Last name</label>
+        <label>Last Name</label>
         <input
           name='last_name'
           className='form-control'
           value={loginInfo.last_name}
+          onChange={handleChange}
+        />
+      </div>
+      <div className='form-group'>
+        <label>Address Line 1</label>
+        <input
+          name='address_line1'
+          className='form-control'
+          value={loginInfo.address_line1}
+          onChange={handleChange}
+        />
+      </div>
+      <div className='form-group'>
+        <label>Address Line 2</label>
+        <input
+          name='address_line2'
+          className='form-control'
+          value={loginInfo.address_line2}
+          onChange={handleChange}
+        />
+      </div>
+      <div className='form-group'>
+        <label>City</label>
+        <input
+          name='city'
+          className='form-control'
+          value={loginInfo.city}
+          onChange={handleChange}
+        />
+      </div>
+      <div className='form-group'>
+        <label>State</label>
+        <input
+          name='state'
+          className='form-control'
+          value={loginInfo.state}
+          onChange={handleChange}
+        />
+      </div>
+      <div className='form-group'>
+        <label>ZIP</label>
+        <input
+          name='zip'
+          className='form-control'
+          value={loginInfo.zip}
           onChange={handleChange}
         />
       </div>
@@ -129,7 +184,18 @@ function Login({ setToken, userType }) {
                   onChange={handleChange}
                 />
               </div>
-              {loginActive ? '' : signupFields}
+
+              {loginActive ? (
+                <div>
+                  <small>
+                    <strong>Demo Account</strong>
+                    <br />
+                    Email: demo@test.com - Password: demo123
+                  </small>
+                </div>
+              ) : (
+                signupFields
+              )}
               {loginInfo.errors.length ? (
                 <Alert type='danger' messages={loginInfo.errors} />
               ) : null}
