@@ -26,7 +26,7 @@ function Routes({ setToken, calculateCartTotal }) {
           <Login setToken={setToken} userType='customer' />
         </Route>
 
-        <Route exact path='/provider/login'>
+        <Route exact path='/login-provider'>
           <Login setToken={setToken} userType='provider' />
         </Route>
 

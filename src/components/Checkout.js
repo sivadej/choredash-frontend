@@ -49,11 +49,11 @@ const Checkout = ({ calculateCartTotal }) => {
             <h5>Address</h5>
             {address ? (
               <small>
-                {address.address.line1.toUpperCase()}
+                {address.address.line1}
                 <br />
-                {address.address.line2.toUpperCase()}
+                {address.address.line2}
                 <br />
-                {address.address.city.toUpperCase()}{', '}{address.address.state.toUpperCase()}{' '}
+                {address.address.city}{', '}{address.address.state}{' '}
                 {address.address.zip}
                 <br />
               </small>

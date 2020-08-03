@@ -33,13 +33,13 @@ const OrderDetails = () => {
             <h5>Address</h5>
             {order ? (
               <small>
-                {order.customer_address.line1.toUpperCase()}
+                {order.customer_address.line1}
                 <br />
-                {order.customer_address.line2.toUpperCase()}
+                {order.customer_address.line2}
                 <br />
-                {order.customer_address.city.toUpperCase()}
+                {order.customer_address.city}
                 {', '}
-                {order.customer_address.state.toUpperCase()}{' '}
+                {order.customer_address.state}{' '}
                 {order.customer_address.zip}
                 <br />
               </small>

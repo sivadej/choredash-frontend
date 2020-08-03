@@ -8,13 +8,13 @@ const DashboardIncoming = ({ accept, reject, orderData }) => {
         {orderData ? (
           <div>
             <small>
-              {orderData.customer_address.line1.toUpperCase()}
+              {orderData.customer_address.line1}
               <br />
-              {orderData.customer_address.line2.toUpperCase()}
+              {orderData.customer_address.line2}
               <br />
-              {orderData.customer_address.city.toUpperCase()}
+              {orderData.customer_address.city}
               {', '}
-              {orderData.customer_address.state.toUpperCase()}{' '}
+              {orderData.customer_address.state}{' '}
               {orderData.customer_address.zip}
               <br />
             </small>

@@ -44,12 +44,14 @@ function Login({ setToken, userType }) {
         city: loginInfo.city,
         state: loginInfo.state,
         zip: loginInfo.zip,
+        userType,
       };
       endpoint = 'register';
     } else {
       data = {
         email: loginInfo.email,
         password: loginInfo.password,
+        userType,
       };
       endpoint = 'login';
     }

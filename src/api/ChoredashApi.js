@@ -32,13 +32,13 @@ class ChoredashApi {
 
   // Authentication API requests:
 
-  static async login(data) {
-    let res = await this.request(`auth/customer/login`, data, 'post');
+  static async login({email, password, userType}) {
+    let res = await this.request(`auth/${userType}/login`, {email, password}, 'post');
     return res;
   }
 
   static async register(data) {
-    let res = await this.request(`customers`, data, 'post');
+    let res = await this.request(`${data.userType}s`, data, 'post');
     return res;
   }
 
